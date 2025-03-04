@@ -89,7 +89,30 @@ void init_console() {
         freopen_s(&f, "CONOUT$", "w", stdout);  // Redirect stdout to console
         freopen_s(&f, "CONOUT$", "w", stderr);  // Redirect stderr to console
         ::SetConsoleTitleW(L"TempleWare");
-        printf("Console allocated successfully!\n");
+        
+        // Set text color to cyan for ASCII art
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+        
+        // Print ASCII art
+        printf("___________                   .__         __      __                       \n");
+        printf("\\__    ___/___   _____ ______ |  |   ____/  \\    /  \\_____ _______   ____  \n");
+        printf("  |    |_/ __ \\ /     \\\\____ \\|  | _/ __ \\   \\/\\/   /\\__  \\\\_  __ \\_/ __ \\ \n");
+        printf("  |    |\\  ___/|  Y Y  \\  |_> >  |_\\  ___/\\        /  / __ \\|  | \\/\\  ___/ \n");
+        printf("  |____| \\___  >__|_|  /   __/|____/\\___  >\\__/\\  /  (____  /__|    \\___  >\n");
+        printf("             \\/      \\/|__|             \\/      \\/        \\/            \\/ \n\n");
+        
+        // Reset color to white
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+        
+        // Print console message with green [+]
+        printf("[");
+        // Set color to green for the + symbol
+        SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+        printf("+");
+        // Reset color to white for the rest of the message
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+        printf("] Console allocated successfully!\n");
     }
 }
 DWORD WINAPI MainThread(LPVOID lpReserved)

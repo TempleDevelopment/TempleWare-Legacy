@@ -85,6 +85,43 @@ namespace internal_config
                 Config::espColor.w
             };
 
+            j["Night"] = Config::Night;
+            j["NightColor"] = {
+                Config::NightColor.x,
+                Config::NightColor.y,
+                Config::NightColor.z,
+                Config::NightColor.w
+            };
+
+            j["enemyChamsInvisible"] = Config::enemyChamsInvisible;
+            j["enemyChams"] = Config::enemyChams;
+            j["teamChams"] = Config::teamChams;
+            j["teamChamsInvisible"] = Config::teamChamsInvisible;
+            j["colVisualChams"] = {
+                Config::colVisualChams.x,
+                Config::colVisualChams.y,
+                Config::colVisualChams.z,
+                Config::colVisualChams.w
+            };
+            j["colVisualChamsIgnoreZ"] = {
+                Config::colVisualChamsIgnoreZ.x,
+                Config::colVisualChamsIgnoreZ.y,
+                Config::colVisualChamsIgnoreZ.z,
+                Config::colVisualChamsIgnoreZ.w
+            };
+            j["teamcolVisualChamsIgnoreZ"] = {
+                Config::teamcolVisualChamsIgnoreZ.x,
+                Config::teamcolVisualChamsIgnoreZ.y,
+                Config::teamcolVisualChamsIgnoreZ.z,
+                Config::teamcolVisualChamsIgnoreZ.w
+            };
+            j["teamcolVisualChams"] = {
+                Config::teamcolVisualChams.x,
+                Config::teamcolVisualChams.y,
+                Config::teamcolVisualChams.z,
+                Config::teamcolVisualChams.w
+            };
+
             auto filePath = GetConfigPath(configName);
             std::ofstream ofs(filePath);
             if (ofs.is_open())
@@ -121,6 +158,57 @@ namespace internal_config
                 Config::espColor.y = arr[1].get<float>();
                 Config::espColor.z = arr[2].get<float>();
                 Config::espColor.w = arr[3].get<float>();
+            }
+
+            Config::Night = j.value("Night", false);
+            if (j.contains("NightColor") && j["NightColor"].is_array() && j["NightColor"].size() == 4)
+            {
+                auto arr = j["NightColor"];
+                Config::NightColor.x = arr[0].get<float>();
+                Config::NightColor.y = arr[1].get<float>();
+                Config::NightColor.z = arr[2].get<float>();
+                Config::NightColor.w = arr[3].get<float>();
+            }
+
+            Config::enemyChamsInvisible = j.value("enemyChamsInvisible", false);
+            Config::enemyChams = j.value("enemyChams", false);
+            Config::teamChams = j.value("teamChams", false);
+            Config::teamChamsInvisible = j.value("teamChamsInvisible", false);
+
+            if (j.contains("colVisualChams") && j["colVisualChams"].is_array() && j["colVisualChams"].size() == 4)
+            {
+                auto arr = j["colVisualChams"];
+                Config::colVisualChams.x = arr[0].get<float>();
+                Config::colVisualChams.y = arr[1].get<float>();
+                Config::colVisualChams.z = arr[2].get<float>();
+                Config::colVisualChams.w = arr[3].get<float>();
+            }
+
+            if (j.contains("colVisualChamsIgnoreZ") && j["colVisualChamsIgnoreZ"].is_array() && j["colVisualChamsIgnoreZ"].size() == 4)
+            {
+                auto arr = j["colVisualChamsIgnoreZ"];
+                Config::colVisualChamsIgnoreZ.x = arr[0].get<float>();
+                Config::colVisualChamsIgnoreZ.y = arr[1].get<float>();
+                Config::colVisualChamsIgnoreZ.z = arr[2].get<float>();
+                Config::colVisualChamsIgnoreZ.w = arr[3].get<float>();
+            }
+
+            if (j.contains("teamcolVisualChamsIgnoreZ") && j["teamcolVisualChamsIgnoreZ"].is_array() && j["teamcolVisualChamsIgnoreZ"].size() == 4)
+            {
+                auto arr = j["teamcolVisualChamsIgnoreZ"];
+                Config::teamcolVisualChamsIgnoreZ.x = arr[0].get<float>();
+                Config::teamcolVisualChamsIgnoreZ.y = arr[1].get<float>();
+                Config::teamcolVisualChamsIgnoreZ.z = arr[2].get<float>();
+                Config::teamcolVisualChamsIgnoreZ.w = arr[3].get<float>();
+            }
+
+            if (j.contains("teamcolVisualChams") && j["teamcolVisualChams"].is_array() && j["teamcolVisualChams"].size() == 4)
+            {
+                auto arr = j["teamcolVisualChams"];
+                Config::teamcolVisualChams.x = arr[0].get<float>();
+                Config::teamcolVisualChams.y = arr[1].get<float>();
+                Config::teamcolVisualChams.z = arr[2].get<float>();
+                Config::teamcolVisualChams.w = arr[3].get<float>();
             }
 
             ifs.close();

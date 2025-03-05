@@ -73,9 +73,8 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
     templeWare.renderer.menu.render();
     templeWare.renderer.hud.render();
 
-    if (Config::esp) {
-        templeWare.renderer.visuals.esp();
-    }
+    // Always call esp() to allow individual components to be rendered
+    templeWare.renderer.visuals.esp();
 
     ImGui::Render();
     pContext->OMSetRenderTargets(1, &mainRenderTargetView, NULL);
@@ -125,10 +124,9 @@ DWORD WINAPI MainThread(LPVOID lpReserved)
                 init_hook = true;
             }
         }
-    } 
-    while (!GetAsyncKeyState(VK_F4));
+    } while (!GetAsyncKeyState(VK_F4));
 
-    if (oWndProc  != nullptr)
+    if (oWndProc != nullptr)
     {
         // restore wnd proc
         SetWindowLongPtrW(window, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(oWndProc));
@@ -150,7 +148,7 @@ DWORD WINAPI MainThread(LPVOID lpReserved)
     // close console window
     if (const HWND hConsoleWindow = ::GetConsoleWindow(); hConsoleWindow != nullptr)
         ::PostMessageW(hConsoleWindow, WM_CLOSE, 0U, 0L);
-    
+
     fclose(stdout);
     fclose(stderr);
 

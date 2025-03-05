@@ -80,6 +80,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x64;$(LibraryPath)</LibraryPath>
     <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <TargetName>TempleWare</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x64;$(LibraryPath)</LibraryPath>
@@ -106,6 +107,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -160,11 +162,14 @@
     <ClCompile Include="external\kiero\minhook\src\hde\hde64.c" />
     <ClCompile Include="external\kiero\minhook\src\hook.c" />
     <ClCompile Include="external\kiero\minhook\src\trampoline.c" />
+    <ClCompile Include="source\cs2\datatypes\cutlbuffer\cutlbuffer.cpp" />
     <ClCompile Include="source\cs2\datatypes\cutl\utlhash\utlhash.cpp" />
+    <ClCompile Include="source\cs2\datatypes\keyvalues\keyvalues.cpp" />
     <ClCompile Include="source\cs2\datatypes\schema\ISchemaClass\ISchemaClass.cpp" />
     <ClCompile Include="source\cs2\entity\CCSPlayerController\CCSPlayerController.cpp" />
     <ClCompile Include="source\cs2\entity\C_CSPlayerPawn\C_CSPlayerPawn.cpp" />
     <ClCompile Include="source\cs2\entity\C_CSWeaponBase\C_CSWeaponBase.cpp" />
+    <ClCompile Include="source\templeware\features\chams\chams.cpp" />
     <ClCompile Include="source\templeware\interfaces\CGameEntitySystem\CGameEntitySystem.cpp" />
     <ClCompile Include="source\templeware\interfaces\interfaces.cpp" />
     <ClCompile Include="source\debug\debug.cpp" />
@@ -202,7 +207,9 @@
     <ClInclude Include="external\imgui\imstb_textedit.h" />
     <ClInclude Include="external\imgui\imstb_truetype.h" />
     <ClInclude Include="external\json\json.hpp" />
+    <ClInclude Include="source\cs2\datatypes\cutlbuffer\cutlbuffer.h" />
     <ClInclude Include="source\cs2\datatypes\cutl\utlhash\utlhash.h" />
+    <ClInclude Include="source\cs2\datatypes\keyvalues\keyvalues.h" />
     <ClInclude Include="source\cs2\datatypes\schema\ISchemaClass\ISchemaClass.h" />
     <ClInclude Include="source\cs2\datatypes\viewmatrix\viewmatrix.h" />
     <ClInclude Include="source\cs2\entity\C_AggregateSceneObject\C_AggregateSceneObject.h" />
@@ -211,7 +218,9 @@
     <ClInclude Include="source\cs2\entity\C_CSPlayerPawn\C_CSPlayerPawn.h" />
     <ClInclude Include="source\cs2\entity\C_CSWeaponBase\C_CSWeaponBase.h" />
     <ClInclude Include="source\cs2\entity\C_EntityInstance\C_EntityInstance.h" />
+    <ClInclude Include="source\cs2\entity\C_Material\C_Material.h" />
     <ClInclude Include="source\cs2\entity\handle.h" />
+    <ClInclude Include="source\templeware\features\chams\chams.h" />
     <ClInclude Include="source\templeware\interfaces\CGameEntitySystem\CGameEntitySystem.h" />
     <ClInclude Include="source\templeware\interfaces\IEngineClient\IEngineClient.h" />
     <ClInclude Include="source\templeware\interfaces\interfaces.h" />
@@ -227,6 +236,7 @@
     <ClInclude Include="source\templeware\utils\math\math.h" />
     <ClInclude Include="source\templeware\utils\math\utlmemory\utlmemory.h" />
     <ClInclude Include="source\templeware\utils\math\utlstring\utlstring.h" />
+    <ClInclude Include="source\templeware\utils\math\utlstronghandle\utlstronghandle.h" />
     <ClInclude Include="source\templeware\utils\math\utlvector\utlvector.h" />
     <ClInclude Include="source\templeware\utils\math\vector\vector.h" />
     <ClInclude Include="source\templeware\utils\math\viewmatrix\viewmatrix.h" />

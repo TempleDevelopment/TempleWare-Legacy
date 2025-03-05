@@ -1,6 +1,6 @@
 #include <algorithm>
 #include <iostream>
-#include "..\..\hooks\hooks.h"
+#include "../../hooks/hooks.h"
 #include "../../players/players.h"
 #include "../../config/config.h"
 #include "../../../../external/imgui/imgui.h"
@@ -27,7 +27,7 @@ void* __fastcall H::hkUpdateSceneObject(C_AggregateSceneObject* object, void* un
 	static auto update_walls_object = UpdateWallsObject.GetOriginal();
 	auto result = update_walls_object(object, unk);
 	auto colors = Config::NightColor;
-	
+
 	if (object) {
 		if (Config::Night) {
 			apply_walls(object, colors);

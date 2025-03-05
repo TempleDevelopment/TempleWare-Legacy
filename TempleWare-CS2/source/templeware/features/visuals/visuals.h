@@ -28,8 +28,8 @@ enum PlayerType_t : int
 
 struct PlayerCache
 {
-	PlayerCache(C_BaseEntity* a1, C_CSPlayerPawn* plyr, CBaseHandle hdl,PlayerType_t typ, int hp,const char* nm,
-		const char* wep_name,  Vector_t pos, Vector_t viewOff, int teamnm) :
+	PlayerCache(C_BaseEntity* a1, C_CSPlayerPawn* plyr, CBaseHandle hdl, PlayerType_t typ, int hp, const char* nm,
+		const char* wep_name, Vector_t pos, Vector_t viewOff, int teamnm) :
 		entity(a1), player(plyr), handle(hdl), type(typ), health(hp), name(nm),
 		weapon_name(wep_name), position(pos), viewOffset(viewOff), team_num(teamnm) { }
 

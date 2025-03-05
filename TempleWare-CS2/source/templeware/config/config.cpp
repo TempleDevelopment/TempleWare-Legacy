@@ -12,6 +12,15 @@ namespace Config {
 	bool teamCheck = false;
 	bool espFill = false;
 	bool Night = false;
+	bool enemyChamsInvisible = false;
+	bool enemyChams = false;
+	bool teamChams = false;
+	bool teamChamsInvisible = false;
+	ImVec4 colVisualChams = ImVec4(1, 0, 0, 1);
+	ImVec4 colVisualChamsIgnoreZ = ImVec4(1, 0, 0, 1);
+	ImVec4 teamcolVisualChamsIgnoreZ = ImVec4(1, 0, 0, 1);
+	ImVec4 teamcolVisualChams = ImVec4(1, 0, 0, 1);
+
 
 	float espThickness = 1.0f;
 	float espFillOpacity = 0.5f;

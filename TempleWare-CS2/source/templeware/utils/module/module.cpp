@@ -6,7 +6,9 @@ Module::Module(uintptr_t moduleAddress, const std::string &moduleName) : address
 void Modules::init() {
 	registerModule("client.dll", "client");
 	registerModule("scenesystem.dll", "scenesystem");
-	registerModule("tier0.dll", "client");
+	registerModule("particles.dll", "particles");
+	registerModule("materialsystem2.dll", "materialsystem2");
+	registerModule("tier0.dll", "tier0");
 }
 
 // Completely acceptable solution because there simply just aren't that many modules :)

@@ -9,7 +9,7 @@
 class Menu {
 public:
 	Menu();
-	 ImFont* icons;
+	ImFont* icons;
 	void init(HWND& window, ID3D11Device* pDevice, ID3D11DeviceContext* pContext, ID3D11RenderTargetView* mainRenderTargetView);
 	void render();
 

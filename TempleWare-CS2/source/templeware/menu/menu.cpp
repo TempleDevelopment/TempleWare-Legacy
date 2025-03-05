@@ -113,19 +113,34 @@ void Menu::render() {
         case 1:
             ImGui::Text("Visuals");
             ImGui::Separator();
+
             if (ImGui::CollapsingHeader("ESP")) {
-                ImGui::Checkbox("Toggle", &Config::esp);
-                if (Config::esp) {
-                    ImGui::ColorEdit4("Color", (float*)&Config::espColor);
-                    ImGui::SliderFloat("Thickness", &Config::espThickness, 1.0f, 5.0f);
-                    ImGui::Checkbox("TeamCheck", &Config::teamCheck);
-                    ImGui::Checkbox("BoxFill", &Config::espFill);
-                    if (Config::espFill) {
-                        ImGui::SliderFloat("FillOpacity", &Config::espFillOpacity, 0.0f, 1.0f);
-                    }
-                    ImGui::Checkbox("Health", &Config::showHealth);
+                ImGui::Checkbox("Box", &Config::esp);
+                ImGui::ColorEdit4("Color", (float*)&Config::espColor);
+                ImGui::SliderFloat("Thickness", &Config::espThickness, 1.0f, 5.0f);
+                ImGui::Checkbox("TeamCheck", &Config::teamCheck);
+                ImGui::Checkbox("BoxFill", &Config::espFill);
+                if (Config::espFill) {
+                    ImGui::SliderFloat("FillOpacity", &Config::espFillOpacity, 0.0f, 1.0f);
+                }
+                ImGui::Checkbox("Health", &Config::showHealth);
+            }
+
+            ImGui::Separator();
+
+            if (ImGui::CollapsingHeader("Chams")) {
+                ImGui::Checkbox("Chams", &Config::enemyChams);
+                ImGui::Checkbox("Chams-XQZ", &Config::enemyChamsInvisible);
+
+                if (Config::enemyChams) {
+                    ImGui::ColorEdit4("ColorVisible", (float*)&Config::colVisualChamsIgnoreZ);
+                }
+
+                if (Config::enemyChamsInvisible) {
+                    ImGui::ColorEdit4("Color-XQZ", (float*)&Config::colVisualChams);
                 }
             }
+
             ImGui::Separator();
 
             break;
@@ -134,7 +149,7 @@ void Menu::render() {
             ImGui::Text("Misc");
             ImGui::Separator();
             ImGui::Checkbox("NightMode", &Config::Night);
-            if (Config::Night) 
+            if (Config::Night)
                 ImGui::ColorEdit4("Color", (float*)&Config::NightColor);
 
             break;
@@ -153,18 +168,18 @@ void Menu::render() {
                 configList = internal_config::ConfigManager::ListConfigs();
             }
             ImGui::SameLine();
-            if (ImGui::Button("Load Config"))
+            if (ImGui::Button("Load"))
             {
                 internal_config::ConfigManager::Load(configName);
             }
             ImGui::SameLine();
-            if (ImGui::Button("Save Config"))
+            if (ImGui::Button("Save"))
             {
                 internal_config::ConfigManager::Save(configName);
                 configList = internal_config::ConfigManager::ListConfigs();
             }
             ImGui::SameLine();
-            if (ImGui::Button("Delete Config"))
+            if (ImGui::Button("Delete"))
             {
                 internal_config::ConfigManager::Remove(configName);
                 configList = internal_config::ConfigManager::ListConfigs();

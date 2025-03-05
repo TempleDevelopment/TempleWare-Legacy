@@ -24,10 +24,10 @@ void Esp::cache()
     if (!I::EngineClient->valid())
         return;
 
-    /*  Old method READ ME 
+    /*  Old method READ ME
     * @ // @here: manually cache once all existing entitys
         // to avoid issues when injecting mid game and hkAddEnt not called by game on existing Entity's
-  
+
        int highest_index = I::GameEntity->Instance->GetHighestEntityIndex();
         for (int i = 1; i <= highest_index; i++) {
             auto entity = I::GameEntity->Instance->Get(i);
@@ -88,13 +88,13 @@ void Esp::cache()
             type = none; int health = 0;
             Vector_t position; Vector_t viewOffset;
             const char* name = "none"; const char* weapon_name = "none";
-  
+
             CCSPlayerController* Controller = reinterpret_cast<CCSPlayerController*>(Entity);
             if (!Controller)
                 continue;
 
             if (!Controller->m_hPawn().valid())
-                continue;    
+                continue;
 
             //@handle caching local player 
             if (Controller->IsLocalPlayer()) {
@@ -137,6 +137,10 @@ void Esp::cache()
 }
 
 void Visuals::esp() {
+    // Only proceed if at least one ESP component is enabled
+    if (!Config::esp && !Config::showHealth && !Config::espFill) {
+        return;
+    }
 
     //@better example of getting local pawn
     C_CSPlayerPawn* localPawn = H::oGetLocalPlayer(0);
@@ -186,15 +190,17 @@ void Visuals::esp() {
             );
         }
 
-        // ESP Box
-        drawList->AddRect(
-            ImVec2(boxX, boxY),
-            ImVec2(boxX + boxWidth, boxY + boxHeight),
-            boxColor,
-            0.0f,
-            0,
-            Config::espThickness
-        );
+        // ESP Box - only render if Config::esp is enabled
+        if (Config::esp) {
+            drawList->AddRect(
+                ImVec2(boxX, boxY),
+                ImVec2(boxX + boxWidth, boxY + boxHeight),
+                boxColor,
+                0.0f,
+                0,
+                Config::espThickness
+            );
+        }
 
         // Health Bar
         if (Config::showHealth) {
@@ -239,23 +245,26 @@ void Visuals::esp() {
         }
 
 
-        std::string playerName = Player.name;
-        ImVec2 nameSize = ImGui::CalcTextSize(playerName.c_str());
+        // Only render player name if any ESP component is enabled
+        if (Config::esp || Config::showHealth || Config::espFill) {
+            std::string playerName = Player.name;
+            ImVec2 nameSize = ImGui::CalcTextSize(playerName.c_str());
 
-        float nameX = boxX + (boxWidth - nameSize.x) / 2;
-        float nameY = boxY - nameSize.y - 2;
+            float nameX = boxX + (boxWidth - nameSize.x) / 2;
+            float nameY = boxY - nameSize.y - 2;
 
-        //@FIXME: shit method to do outline
-        drawList->AddText(
-            ImVec2(nameX + 1, nameY + 1),
-            IM_COL32(0, 0, 0, 255),
-            playerName.c_str()
-        );
+            //@FIXME: shit method to do outline
+            drawList->AddText(
+                ImVec2(nameX + 1, nameY + 1),
+                IM_COL32(0, 0, 0, 255),
+                playerName.c_str()
+            );
 
-        drawList->AddText(
-            ImVec2(nameX, nameY),
-            IM_COL32(255, 255, 255, 255),
-            playerName.c_str()
-        );
+            drawList->AddText(
+                ImVec2(nameX, nameY),
+                IM_COL32(255, 255, 255, 255),
+                playerName.c_str()
+            );
+        }
     }
 }

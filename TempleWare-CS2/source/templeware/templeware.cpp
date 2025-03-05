@@ -1,12 +1,11 @@
 #include "templeware.h"
+
 #include "utils/module/module.h"
 
 #include <iostream>
-#include <windows.h>
 
 void TempleWare::init(HWND& window, ID3D11Device* pDevice, ID3D11DeviceContext* pContext, ID3D11RenderTargetView* mainRenderTargetView) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-
 
     auto printWithPrefix = [&](const char* message) {
         std::cout << "[";
@@ -30,6 +29,9 @@ void TempleWare::init(HWND& window, ID3D11Device* pDevice, ID3D11DeviceContext* 
 
     printWithPrefix("Initializing visuals...");
     renderer.visuals.init();
+
+    printWithPrefix("Initializing materials...");
+    materials.init();
 
     printWithPrefix("Initializing hooks...");
     hooks.init();
